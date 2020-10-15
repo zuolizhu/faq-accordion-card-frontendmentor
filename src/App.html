@@ -1,0 +1,36 @@
+<script>
+  import Faq from './components/Faq.html';
+
+  const faqs = [
+    { id: 0, question: 'How many team members can I invite?', answer: 'ou can invite up to 2 additional users on the Free plan. There is no limit on team members for the Premium plan.', opened: false },
+    { id: 1, question: 'What is the maximum file upload size?', answer: 'No more than 2GB. All files in your account must fit your allotted storage space.', opened: true },
+    { id: 2, question: 'How do I reset my password?', answer: 'Click “Forgot password” from the login page or “Change password” from your profile page. A reset link will be emailed to you.', opened: false },
+    { id: 3, question: 'Can I cancel my subscription?', answer: 'Yes! Send us a message and we’ll process your request no questions asked.', opened: false },
+    { id: 4, question: 'Do you provide additional support?', answer: 'Chat and email support is available 24/7. Phone lines are open during normal business hours.', opened: false }
+  ];
+
+  function faqToggle(event) {
+    const clickedFaqId = parseInt(event.currentTarget.dataset.id);
+    faqs.forEach((faq, index) => {
+      if (index === clickedFaqId) {
+        faq.opened = true;
+      } else {
+        faq.opened = false;
+      }
+    })
+  }
+
+</script>
+
+<main class="main">
+  <section class="faqs">
+    <h1 class="sr-only">FAQ section</h1>
+    <div class="faqs__image"></div>
+    <div class="faqs-container">
+      <h2 class="t-h2 faqs__heading">FAQ</h2>
+      {#each faqs as faq, index (index)}
+        <Faq @click:faqToggle id={faq.id} question={faq.question} answer={faq.answer} :opened={faq.opened} />
+      {/each}
+    </div>
+  </section>
+</main>

@@ -1,0 +1,73 @@
+<script>
+  export let question = 'default question';
+  export let answer = 'default answer';
+  export let opened = false;
+  export let id = 0;
+</script>
+
+<div @click class="faq" class:opened={opened} data-id={id}>
+  <p class="faq__question t-question">{question}</p>
+  <p class="faq__answer t-answer">{answer}</p>
+</div>
+
+
+<style>
+.faq {
+  width: 100%;
+  cursor: pointer;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--color-light-gray);
+}
+.faq:not(:first-of-type) {
+  margin-top: 1.7rem;
+}
+@media (min-width: 1024px) {
+  .faq {
+    padding-right: 1.6rem;
+  }
+}
+
+.faq__question {
+  outline: none;
+  transition: var(--transition) color;
+}
+
+.faq:hover > .faq__question {
+  color: var(--color-soft-red);
+}
+
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faq__question::after {
+  content: '';
+  width: 1rem;
+  height: .7rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(./images/icon-arrow-down.svg);
+}
+
+.faq.opened > .faq__question::after {
+  transform: rotate(180deg);
+  margin-top: -0.5rem;
+}
+
+.faq__answer {
+  display: none;
+}
+
+.faq.opened .faq__answer {
+  display: block;
+  margin-top: 1.2rem;
+}
+@media (min-width: 1024px) {
+  .faq.opened .faq__answer {
+    margin-top: .9rem;
+  }
+}
+
+</style>
